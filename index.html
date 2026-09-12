@@ -8,54 +8,143 @@
 <meta property="og:title" content="2 Fossicker Circuit, Springfield QLD 4300">
 <meta property="og:description" content="4-bed family home with pool, solar + 40.9kWh battery, EV charging and FTTP NBN. Open homes Saturdays 12:00–12:30pm. Enquire today.">
 <meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#12333f; --teal:#1c6e6e; --sand:#f7f4ee; --ink:#22333b;
-    --accent:#c9a86a; --white:#ffffff;
+    --ink:#262626; --ink-soft:#3a3836; --grey:#737272; --line:#e6e2db;
+    --paper:#faf9f6; --card:#ffffff;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:var(--sand);line-height:1.65;}
-  h1,h2,h3{font-family:'Palatino Linotype',Georgia,serif;color:var(--navy);}
-  header{background:linear-gradient(135deg,var(--navy) 0%,var(--teal) 100%);color:var(--white);padding:70px 20px 90px;text-align:center;}
-  header .kicker{letter-spacing:4px;text-transform:uppercase;font-size:.8rem;color:var(--accent);margin-bottom:14px;}
-  header h1{font-size:clamp(2rem,5vw,3.2rem);color:var(--white);margin-bottom:10px;}
-  header .sub{font-size:1.15rem;opacity:.9;max-width:640px;margin:0 auto 26px;}
-  .price-tag{display:inline-block;background:var(--accent);color:var(--navy);font-weight:bold;padding:10px 26px;border-radius:30px;font-size:1.05rem;}
-  nav{background:var(--navy);position:sticky;top:0;z-index:10;display:flex;justify-content:center;flex-wrap:wrap;gap:4px;padding:8px;}
-  nav a{color:var(--white);text-decoration:none;padding:8px 16px;border-radius:4px;font-size:.92rem;font-family:Arial,Helvetica,sans-serif;}
-  nav a:hover{background:rgba(255,255,255,.12);}
-  .wrap{max-width:1000px;margin:0 auto;padding:0 20px;}
-  section{padding:56px 0;}
-  section h2{font-size:1.9rem;margin-bottom:22px;border-bottom:3px solid var(--accent);display:inline-block;padding-bottom:6px;}
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:-60px;margin-bottom:30px;}
-  .stat{background:var(--white);border-radius:10px;padding:20px 10px;text-align:center;box-shadow:0 4px 14px rgba(18,51,63,.12);}
-  .stat b{display:block;font-size:1.7rem;color:var(--teal);}
-  .stat span{font-size:.85rem;font-family:Arial,sans-serif;color:#5c6b73;}
-  .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:34px;}
+  body{
+    font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;
+    color:var(--ink); background:var(--paper);
+    font-size:1rem; line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Cormorant Garamond','Times New Roman',Georgia,serif;
+    color:var(--ink); font-weight:500; line-height:1.12;
+  }
+
+  /* ---------- Header ---------- */
+  header{text-align:center;padding:104px 24px 88px;}
+  .kicker{
+    font-size:.72rem; font-weight:600; letter-spacing:.26em;
+    text-transform:uppercase; color:var(--grey); margin-bottom:26px;
+  }
+  header h1{
+    font-size:clamp(3rem,8vw,5.25rem); font-weight:500;
+    letter-spacing:-.01em; margin-bottom:18px;
+  }
+  header h1 em{font-style:italic;font-weight:400;}
+  header .sub{
+    font-size:1.06rem; color:var(--ink-soft); max-width:560px;
+    margin:0 auto 34px; line-height:1.65;
+  }
+  .price-tag{
+    display:inline-block; border:1px solid var(--ink); color:var(--ink);
+    font-weight:600; font-size:.78rem; letter-spacing:.14em; text-transform:uppercase;
+    padding:13px 30px;
+  }
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:10; background:var(--paper);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    display:flex; justify-content:center; flex-wrap:wrap; gap:6px; padding:10px 12px;
+  }
+  nav a{
+    color:var(--ink-soft); text-decoration:none; padding:8px 16px;
+    font-size:.78rem; font-weight:500; letter-spacing:.06em; text-transform:uppercase;
+  }
+  nav a:hover{color:var(--ink); background:var(--line);}
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px;}
+  section{padding:96px 0;}
+  section h2{
+    font-size:clamp(2.1rem,4.5vw,3rem); font-weight:500;
+    margin-bottom:16px;
+  }
+  .eyebrow{
+    font-size:.7rem; font-weight:600; letter-spacing:.24em;
+    text-transform:uppercase; color:var(--grey); margin-bottom:20px;
+  }
+  section .lede{max-width:640px;color:var(--ink-soft);margin-bottom:48px;}
+
+  /* ---------- Stats ---------- */
+  .stats{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    border:1px solid var(--line); border-bottom:none; margin:-80px 0 72px; background:var(--card);
+  }
+  .stat{padding:34px 18px; text-align:center; border-bottom:1px solid var(--line);}
+  .stat + .stat{border-left:1px solid var(--line);}
+  .stat b{
+    display:block; font-family:'Cormorant Garamond',serif; font-weight:500;
+    font-size:2.3rem; line-height:1; color:var(--ink); margin-bottom:10px;
+  }
+  .stat span{font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--grey);}
+
+  /* ---------- Feature lists ---------- */
+  .cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:56px 40px;}
   ul.feat{list-style:none;}
-  ul.feat li{padding:7px 0 7px 30px;position:relative;}
-  ul.feat li::before{content:"✦";position:absolute;left:4px;color:var(--accent);}
-  .card{background:var(--white);border-radius:12px;padding:28px;box-shadow:0 4px 14px rgba(18,51,63,.1);}
-  .card h3{margin-bottom:12px;}
-  .energy{background:var(--navy);color:var(--white);}
-  .energy h2, .energy h3{color:var(--white);}
-  .energy .card{background:rgba(255,255,255,.07);box-shadow:none;border:1px solid rgba(255,255,255,.15);}
-  .energy .card b{color:var(--accent);}
-  .openhome{background:var(--white);border-left:6px solid var(--accent);}
-  .btn{display:inline-block;background:var(--teal);color:var(--white);text-decoration:none;padding:13px 32px;border-radius:30px;font-family:Arial,sans-serif;font-weight:bold;margin-top:16px;}
-  .btn:hover{background:var(--navy);}
-  footer{background:var(--navy);color:#cfd8dc;text-align:center;padding:34px 20px;font-size:.88rem;font-family:Arial,sans-serif;}
-  footer a{color:var(--accent);}
-  .disclaimer{font-size:.75rem;opacity:.7;margin-top:18px;max-width:760px;margin-left:auto;margin-right:auto;}
-  @media(max-width:600px){header{padding:50px 16px 80px;}}
+  ul.feat li{
+    padding:14px 0 14px 26px; position:relative; color:var(--ink-soft);
+    border-bottom:1px solid var(--line);
+  }
+  ul.feat li:last-child{border-bottom:none;}
+  ul.feat li::before{content:""; position:absolute; left:0; top:24px;
+    width:8px; height:1px; background:var(--grey);}
+
+  /* ---------- Cards ---------- */
+  .card{background:var(--card); border:1px solid var(--line); padding:36px 32px;}
+  .card h3{font-size:1.55rem; margin-bottom:12px;}
+  .card p{color:var(--ink-soft); font-size:.95rem;}
+
+  /* ---------- Energy (dark) ---------- */
+  .energy{background:var(--ink); color:#fff;}
+  .energy h2,.energy h3,.energy h4{color:#fff;}
+  .energy .eyebrow{color:#a9a6a0;}
+  .energy .lede{color:#cfccc6;}
+  .energy .card{background:transparent; border:1px solid rgba(255,255,255,.22);}
+  .energy .card p{color:#d6d3cd;}
+  .energy .card b{color:#fff;}
+
+  /* ---------- Inspection ---------- */
+  .openhome{background:var(--card); border:1px solid var(--ink);}
+  .openhome p{color:var(--ink-soft);}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-block; background:var(--ink); color:#fff; text-decoration:none;
+    padding:15px 34px; font-size:.78rem; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; border:1px solid var(--ink); margin-top:24px;
+    transition:background .2s ease,color .2s ease;
+  }
+  .btn:hover{background:transparent; color:var(--ink);}
+  .energy .btn{background:#fff;color:var(--ink);border-color:#fff;}
+  .energy .btn:hover{background:transparent;color:#fff;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:#a9a6a0;text-align:center;padding:48px 24px;font-size:.85rem;}
+  footer a{color:#fff;}
+  .disclaimer{font-size:.72rem;opacity:.7;margin-top:22px;max-width:760px;margin-left:auto;margin-right:auto;line-height:1.6;}
+
+  @media(max-width:600px){
+    header{padding:72px 20px 64px;}
+    section{padding:64px 0;}
+    .stat + .stat{border-left:none;}
+    .stats{grid-template-columns:repeat(2,1fr);}
+  }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="kicker">For Sale · Springfield QLD 4300</div>
-  <h1>2 Fossicker Circuit</h1>
+  <div class="kicker">For Sale &middot; Springfield QLD 4300</div>
+  <h1>2 Fossicker <em>Circuit</em></h1>
   <p class="sub">An impressive family home where space, light and lifestyle come together — pool, solar with massive battery storage, and room for the whole tribe.</p>
   <span class="price-tag">Offers Over $1,150,000</span>
 </header>
@@ -64,19 +153,21 @@
   <div class="stats">
     <div class="stat"><b>4</b><span>Bedrooms</span></div>
     <div class="stat"><b>2</b><span>Bathrooms</span></div>
-    <div class="stat"><b>1</b><span>Garage + 3 Carport</span></div>
+    <div class="stat"><b>1 + 3</b><span>Garage &amp; Carport</span></div>
     <div class="stat"><b>720m²</b><span>Land Size</span></div>
     <div class="stat"><b>40.9kWh</b><span>Battery Storage</span></div>
   </div>
 
   <section id="about">
-    <h2>The Home</h2>
-    <p>Offering space, style and a lifestyle the whole family can enjoy, this expansive home is filled with natural light and thoughtfully appointed with contemporary finishes. Designed for family living, it offers multiple spaces to retreat and connect, while manicured gardens and a sparkling pool complete the idyllic outdoor setting.</p>
+    <div class="eyebrow">The Home</div>
+    <h2>Space, light and lifestyle for the whole family</h2>
+    <p class="lede">Offering space, style and a lifestyle the whole family can enjoy, this expansive home is filled with natural light and thoughtfully appointed with contemporary finishes. Designed for family living, it offers multiple spaces to retreat and connect, while manicured gardens and a sparkling pool complete the idyllic outdoor setting.</p>
   </section>
 
   <section id="features">
-    <h2>Space &amp; Comfort</h2>
-    <div class="cols">
+    <div class="eyebrow">Space &amp; Comfort</div>
+    <h2>Made for everyday living</h2>
+    <div class="cols" style="margin-top:48px;">
       <ul class="feat">
         <li>Light-filled master bedroom with ensuite and built-in robe</li>
         <li>Three additional bedrooms plus a flexible study — ideal as a fifth bedroom</li>
@@ -94,20 +185,22 @@
 
   <section id="energy" class="energy">
     <div class="wrap">
-      <h2>Premium Energy Setup</h2>
-      <p style="max-width:720px;margin-bottom:24px;">A genuinely exceptional energy system designed to keep running costs low — one of the most complete solar-plus-storage setups in the local market.</p>
+      <div class="eyebrow">Premium Energy Setup</div>
+      <h2>A genuinely exceptional energy system</h2>
+      <p class="lede">Designed to keep running costs low — one of the most complete solar-plus-storage setups in the local market.</p>
       <div class="cols">
-        <div class="card"><h3>☀️ 10kW Solar + Solax Hybrid Inverter</h3><p>Top-tier <b>10kW Solax hybrid inverter</b> capturing the Queensland sun all day.</p></div>
-        <div class="card"><h3>🔋 40.9kWh Battery Storage</h3><p>A massive <b>40.9kWh battery array</b> — store your daytime energy for evening use, and largely sidestep the grid.</p></div>
-        <div class="card"><h3>🚗 EV Charging Station</h3><p>Dedicated <b>EV charger ready to go</b> — charge your electric vehicle from your own rooftop.</p></div>
-        <div class="card"><h3>❄️ Ducted Air Con, Guilt-Free</h3><p><b>Fully ducted air conditioning</b> powered by your own solar and battery — comfort without the bill anxiety.</p></div>
+        <div class="card"><h3>10kW Solar + Solax Hybrid Inverter</h3><p>Top-tier <b>10kW Solax hybrid inverter</b> capturing the Queensland sun all day.</p></div>
+        <div class="card"><h3>40.9kWh Battery Storage</h3><p>A massive <b>40.9kWh battery array</b> — store your daytime energy for evening use, and largely sidestep the grid.</p></div>
+        <div class="card"><h3>EV Charging Station</h3><p>Dedicated <b>EV charger ready to go</b> — charge your electric vehicle from your own rooftop.</p></div>
+        <div class="card"><h3>Ducted Air Con, Guilt-Free</h3><p><b>Fully ducted air conditioning</b> powered by your own solar and battery — comfort without the bill anxiety.</p></div>
       </div>
     </div>
   </section>
 
   <section id="outdoor">
-    <h2>Outdoor Living &amp; Parking</h2>
-    <div class="cols">
+    <div class="eyebrow">Outdoor Living &amp; Parking</div>
+    <h2>Entertain, swim, and park with ease</h2>
+    <div class="cols" style="margin-top:48px;">
       <ul class="feat">
         <li>Spacious undercover entertaining area — perfect for year-round enjoyment</li>
         <li>Gorgeous in-ground swimming pool surrounded by tropical landscaping</li>
@@ -122,24 +215,26 @@
   </section>
 
   <section id="connection">
-    <h2>Connected &amp; Convenient</h2>
-    <div class="cols">
-      <div class="card"><h3>🌐 NBN Fibre to the Premises</h3><p>FTTP — supports wholesale speeds up to <b>2000 Mbps</b>. A rare advantage for working, streaming and gaming.</p></div>
-      <div class="card"><h3>📍 Springfield Location</h3><p>In the heart of the Springfield corridor — close to schools, Orion Springfield Central shopping, rail links and the Centenary Motorway.</p></div>
+    <div class="eyebrow">Connected &amp; Convenient</div>
+    <h2>Everything within reach</h2>
+    <div class="cols" style="margin-top:48px;">
+      <div class="card"><h3>NBN Fibre to the Premises</h3><p>FTTP — supports wholesale speeds up to <b>2000 Mbps</b>. A rare advantage for working, streaming and gaming.</p></div>
+      <div class="card"><h3>Springfield Location</h3><p>In the heart of the Springfield corridor — close to schools, Orion Springfield Central shopping, rail links and the Centenary Motorway.</p></div>
     </div>
   </section>
 
   <section id="inspection">
-    <h2>Inspections &amp; Enquiries</h2>
-    <div class="card openhome">
-      <h3>🏠 Open Home</h3>
+    <div class="eyebrow">Inspections &amp; Enquiries</div>
+    <h2>Come and see it</h2>
+    <div class="card openhome" style="margin-top:48px;">
+      <h3>Open Home</h3>
       <p><b>Saturdays, 12:00 – 12:30 pm</b> — or contact the agents to arrange a private inspection at a time that suits you.</p>
-      <div style="margin-top:20px;">
+      <div style="margin-top:24px;">
         <p><b>Clare May Real Estate — Camira</b><br>
         1 Dale Road, Camira, QLD 4300</p>
         <p style="margin-top:12px;">
-          <b><a href="https://www.realestate.com.au/agent/clare-may-3287368" style="color:var(--teal);">Clare May</a></b> — 5.0★ (223 reviews)<br>
-          <b><a href="https://www.realestate.com.au/agent/phoebe-jackson-3488924" style="color:var(--teal);">Phoebe Jackson</a></b> — 5.0★ (2 reviews)
+          <b><a href="https://www.realestate.com.au/agent/clare-may-3287368" style="color:var(--ink);">Clare May</a></b> — 5.0★ (223 reviews)<br>
+          <b><a href="https://www.realestate.com.au/agent/phoebe-jackson-3488924" style="color:var(--ink);">Phoebe Jackson</a></b> — 5.0★ (2 reviews)
         </p>
         <p style="margin-top:12px;">📞 Clare: 0411 127 4… &nbsp;|&nbsp; 📞 Phoebe: 0429 884 8… <em>(full numbers via the listing page)</em></p>
         <a class="btn" href="https://www.realestate.com.au/property-house-qld-springfield-152030564">View Full Listing &amp; Enquire</a>
