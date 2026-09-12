@@ -39,9 +39,16 @@ upload() {
     "${BASE}/${file}"
 }
 
-# The whole site is index.html. Any future assets get added to this list.
-for file in index.html; do
-  upload "$file"
+# Create the img directory if it doesn't exist, then upload index.html and every
+# image in img/.
+curl --fail --silent --show-error ${SSL_FLAG} \
+  --user "${FTP_USER}:${FTP_PASS}" \
+  --ftp-create-dirs --upload-file /dev/null \
+  "${BASE}/img/.keep" > /dev/null 2>&1 || true
+
+upload "index.html"
+for file in img/*; do
+  [ -f "$file" ] && upload "$file"
 done
 
 echo "Deploy complete."

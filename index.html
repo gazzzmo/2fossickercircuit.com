@@ -77,7 +77,7 @@
   /* ---------- Stats ---------- */
   .stats{
     display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-    border:1px solid var(--line); border-bottom:none; margin:-80px 0 72px; background:var(--card);
+    border:1px solid var(--line); border-bottom:none; margin:72px 0 72px; background:var(--card);
   }
   .stat{padding:34px 18px; text-align:center; border-bottom:1px solid var(--line);}
   .stat + .stat{border-left:1px solid var(--line);}
@@ -132,6 +132,46 @@
   footer a{color:#fff;}
   .disclaimer{font-size:.72rem;opacity:.7;margin-top:22px;max-width:760px;margin-left:auto;margin-right:auto;line-height:1.6;}
 
+  /* ---------- Carousel ---------- */
+  .carousel{position:relative;max-width:1200px;margin:0 auto;padding:0 24px;margin-top:-40px;}
+  .carousel-frame{
+    position:relative; overflow:hidden; background:var(--line);
+    aspect-ratio:16/9; border:1px solid var(--line);
+  }
+  .carousel-track{display:flex; height:100%; transition:transform .5s cubic-bezier(.4,0,.2,1);}
+  .slide{flex:0 0 100%; height:100%; position:relative;}
+  .slide img{width:100%; height:100%; object-fit:cover; display:block;}
+  .slide .cap{
+    position:absolute; left:0; bottom:0; right:0; padding:36px 28px 22px;
+    background:linear-gradient(180deg,transparent,rgba(20,20,20,.62));
+    color:#fff; font-size:.8rem; font-weight:500; letter-spacing:.04em;
+  }
+  .carousel .arrow{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:46px; height:46px; border:1px solid rgba(255,255,255,.7);
+    background:rgba(20,20,20,.28); color:#fff; cursor:pointer; z-index:3;
+    display:flex; align-items:center; justify-content:center; font-size:1.25rem;
+    transition:background .2s ease;
+  }
+  .carousel .arrow:hover{background:rgba(20,20,20,.6);}
+  .carousel .prev{left:16px;} .carousel .next{right:16px;}
+  .carousel .counter{
+    position:absolute; right:18px; top:18px; z-index:3;
+    background:rgba(20,20,20,.55); color:#fff; font-size:.72rem;
+    letter-spacing:.1em; padding:6px 12px;
+  }
+  .dots{display:flex; justify-content:center; gap:8px; margin-top:20px; flex-wrap:wrap;}
+  .dots button{
+    width:9px; height:9px; border-radius:50%; border:1px solid var(--ink);
+    background:transparent; cursor:pointer; padding:0;
+  }
+  .dots button.active{background:var(--ink);}
+  .dots button.floorplan-dot{border-color:var(--grey);}
+  .floorplan-tag{
+    text-align:center; margin-top:8px; font-size:.72rem; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--grey);
+  }
+
   @media(max-width:600px){
     header{padding:72px 20px 64px;}
     section{padding:64px 0;}
@@ -148,6 +188,32 @@
   <p class="sub">An impressive family home where space, light and lifestyle come together — pool, solar with massive battery storage, and room for the whole tribe.</p>
   <span class="price-tag">Offers Over $1,150,000</span>
 </header>
+
+<div class="carousel" id="gallery" aria-label="Property photo gallery">
+  <div class="carousel-frame">
+    <div class="carousel-track" id="track">
+      <div class="slide"><img src="img/photo-01.jpg" alt="Front of the home"></div>
+      <div class="slide"><img src="img/photo-02.jpg" alt="Swimming pool and alfresco"></div>
+      <div class="slide"><img src="img/photo-03.jpg" alt="Living area"></div>
+      <div class="slide"><img src="img/photo-04.jpg" alt="Kitchen"></div>
+      <div class="slide"><img src="img/photo-05.jpg" alt="Dining and living space"></div>
+      <div class="slide"><img src="img/photo-06.jpg" alt="Bedroom"></div>
+      <div class="slide"><img src="img/photo-07.jpg" alt="Bathroom"></div>
+      <div class="slide"><img src="img/photo-08.jpg" alt="Additional living space"></div>
+      <div class="slide"><img src="img/photo-09.jpg" alt="Solar and energy system"></div>
+      <div class="slide"><img src="img/photo-10.jpg" alt="Outdoor entertaining"></div>
+      <div class="slide"><img src="img/photo-11.jpg" alt="Gardens and grounds"></div>
+      <div class="slide"><img src="img/photo-12.jpg" alt="Feature detail"></div>
+      <div class="slide"><img src="img/photo-13.jpg" alt="More of the home"></div>
+      <div class="slide"><img src="img/photo-14-floorplan.jpg" alt="Floorplan"></div>
+    </div>
+    <button class="arrow prev" aria-label="Previous photo">&#8249;</button>
+    <button class="arrow next" aria-label="Next photo">&#8250;</button>
+    <div class="counter" id="counter">1 / 14</div>
+  </div>
+  <div class="dots" id="dots"></div>
+  <div class="floorplan-tag">Final slide: floorplan</div>
+</div>
 
 <div class="wrap">
   <div class="stats">
@@ -247,6 +313,55 @@
   <p><strong>2 Fossicker Circuit, Springfield QLD 4300</strong> — marketed by <a href="https://www.realestate.com.au/agency/clare-may-real-estate-camira-XEMQAA">Clare May Real Estate, Camira</a></p>
   <p class="disclaimer">All information contained herein is gathered from sources we believe to be reliable; however we cannot guarantee its accuracy and interested persons should rely on their own enquiries. Energy system figures (10kW inverter, 40.9kWh battery) are as stated by the vendor. Actual power savings will vary with usage, weather and tariff arrangements.</p>
 </footer>
+
+<script>
+(function(){
+  var track = document.getElementById('track');
+  var slides = track.children;
+  var n = slides.length;
+  var idx = 0;
+  var counter = document.getElementById('counter');
+  var dotsWrap = document.getElementById('dots');
+
+  for (var i = 0; i < n; i++) {
+    var b = document.createElement('button');
+    b.setAttribute('aria-label', 'Go to photo ' + (i + 1));
+    if (i === n - 1) b.className = 'floorplan-dot';
+    b.addEventListener('click', (function(j){ return function(){ go(j); }; })(i));
+    dotsWrap.appendChild(b);
+  }
+  var dotEls = dotsWrap.children;
+
+  function go(j) {
+    idx = (j + n) % n;
+    track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    counter.textContent = (idx + 1) + ' / ' + n;
+    for (var k = 0; k < dotEls.length; k++) {
+      dotEls[k].classList.toggle('active', k === idx);
+    }
+  }
+  go(0);
+
+  document.querySelector('.prev').addEventListener('click', function(){ go(idx - 1); });
+  document.querySelector('.next').addEventListener('click', function(){ go(idx + 1); });
+
+  // Swipe support
+  var startX = null;
+  var frame = document.querySelector('.carousel-frame');
+  frame.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+  frame.addEventListener('touchend', function(e){
+    if (startX === null) return;
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+    startX = null;
+  }, {passive:true});
+
+  // Auto-advance every 5s, pause on hover
+  var timer = setInterval(function(){ go(idx + 1); }, 5000);
+  frame.addEventListener('mouseenter', function(){ clearInterval(timer); });
+  frame.addEventListener('mouseleave', function(){ timer = setInterval(function(){ go(idx + 1); }, 5000); });
+})();
+</script>
 
 </body>
 </html>
