@@ -21,10 +21,12 @@ fi
 
 BASE="${FTP_URL%/}"
 
-# FTPS requires curl's explicit-TLS flag; plain FTP does not.
+# This host uses explicit FTPS (AUTH TLS on port 21). The `ftps://` URL scheme
+# would force implicit FTPS on port 990, which is closed, so use `ftp://` with
+# curl's --ftp-ssl flag to negotiate TLS explicitly.
 SSL_FLAG=""
 case "$BASE" in
-  ftps://*) SSL_FLAG="--ssl-reqd" ;;
+  ftp://*) SSL_FLAG="--ftp-ssl" ;;
 esac
 
 upload() {
