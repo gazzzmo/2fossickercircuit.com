@@ -47,7 +47,9 @@ curl --fail --silent --show-error ${SSL_FLAG} \
   "${BASE}/img/.keep" > /dev/null 2>&1 || true
 
 upload "index.html"
-for file in img/*; do
+upload "robots.txt"
+upload "sitemap.xml"
+for file in img/*.webp img/*.jpg img/*.png img/*.ico; do
   [ -f "$file" ] && upload "$file"
 done
 
