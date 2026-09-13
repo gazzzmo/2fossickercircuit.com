@@ -28,31 +28,15 @@
     color:var(--ink); font-weight:500; line-height:1.12;
   }
 
-  /* ---------- Hero video ---------- */
-  .hero{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#000;}
-  .hero iframe{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none;}
-  .hero .veil{
-    position:absolute;inset:0;
-    background:linear-gradient(180deg,rgba(20,20,20,.30) 0%,rgba(20,20,20,0) 30%,rgba(20,20,20,.55) 100%);
-    display:flex; flex-direction:column; justify-content:flex-end; align-items:center;
-    text-align:center; padding:40px 24px 56px; pointer-events:none;
-  }
-  .hero .kicker{color:#e8e4dc; letter-spacing:.26em; font-size:.72rem; font-weight:600; text-transform:uppercase; margin-bottom:14px;}
-  .hero h1{
-    font-family:'Cormorant Garamond','Times New Roman',Georgia,serif;
-    font-size:clamp(2.6rem,7vw,4.75rem); font-weight:500; color:#fff;
-    line-height:1.08; margin-bottom:14px; letter-spacing:-.01em;
-  }
-  .hero h1 em{font-style:italic;font-weight:400;}
-  .hero .sub{color:#f0ece5; font-size:1rem; max-width:560px; line-height:1.6; margin-bottom:24px;}
-  .hero .price-tag{
-    display:inline-block; border:1px solid rgba(255,255,255,.85); color:#fff;
-    font-weight:600; font-size:.78rem; letter-spacing:.14em; text-transform:uppercase;
-    padding:12px 28px;
+  /* ---------- Video block ---------- */
+  .video-block{max-width:1200px;margin:0 auto;padding:0 24px;margin-bottom:8px;}
+  .video-block iframe{
+    display:block; width:100%; aspect-ratio:16/9; border:0;
+    background:#000;
   }
 
   /* ---------- Header ---------- */
-  header{text-align:center;padding:104px 24px 88px;}
+  header{text-align:center;padding:96px 24px 64px;}
   .kicker{
     font-size:.72rem; font-weight:600; letter-spacing:.26em;
     text-transform:uppercase; color:var(--grey); margin-bottom:26px;
@@ -205,14 +189,15 @@
 </head>
 <body>
 
-<div class="hero">
+<header>
+  <div class="kicker">For Sale &middot; Springfield QLD 4300</div>
+  <h1>2 Fossicker <em>Circuit</em></h1>
+  <p class="sub">An impressive family home where space, light and lifestyle come together — pool, solar with massive battery storage, and room for the whole tribe.</p>
+  <span class="price-tag">Offers Over $1,150,000</span>
+</header>
+
+<div class="video-block">
   <iframe src="https://www.youtube.com/embed/WVURvFLUL6U?autoplay=1&mute=1&loop=1&playlist=WVURvFLUL6U&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3" title="2 Fossicker Circuit, Springfield — property video" allow="autoplay; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
-  <div class="veil">
-    <div class="kicker">For Sale &middot; Springfield QLD 4300</div>
-    <h1>2 Fossicker <em>Circuit</em></h1>
-    <p class="sub">An impressive family home where space, light and lifestyle come together — pool, solar with massive battery storage, and room for the whole tribe.</p>
-    <span class="price-tag">Offers Over $1,150,000</span>
-  </div>
 </div>
 
 <div class="carousel" id="gallery" aria-label="Property photo gallery">
