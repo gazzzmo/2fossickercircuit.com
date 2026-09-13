@@ -198,9 +198,7 @@
 </header>
 
 <div class="video-block">
-  <div class="video-frame">
-    <iframe src="https://www.youtube.com/embed/WVURvFLUL6U?autoplay=1&mute=1&loop=1&playlist=WVURvFLUL6U&controls=0&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3&cc_load_policy=0&hl=en" title="2 Fossicker Circuit, Springfield — property video" allow="autoplay; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
-  </div>
+  <div class="video-frame" id="yt-player"></div>
 </div>
 
 <div class="carousel" id="gallery" aria-label="Property photo gallery">
@@ -376,6 +374,40 @@
   frame.addEventListener('mouseenter', function(){ clearInterval(timer); });
   frame.addEventListener('mouseleave', function(){ timer = setInterval(function(){ go(idx + 1); }, 5000); });
 })();
+</script>
+
+<script>
+// Embedded property video: autoplay, muted, loop, no captions, no controls.
+var tag = document.createElement('script');
+tag.src = 'https://www.youtube.com/iframe_api';
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('yt-player', {
+    videoId: 'WVURvFLUL6U',
+    playerVars: {
+      autoplay: 1,
+      mute: 1,
+      loop: 1,
+      playlist: 'WVURvFLUL6U',
+      controls: 0,
+      modestbranding: 1,
+      rel: 0,
+      playsinline: 1,
+      iv_load_policy: 3,
+      cc_load_policy: 0,
+      hl: 'en'
+    },
+    events: {
+      onReady: function() {
+        player.unloadModule('captions');
+        player.playVideo();
+      }
+    }
+  });
+}
 </script>
 
 </body>
